@@ -10,3 +10,12 @@ resource "aws_instance" "demo" {
     Name = "Webhook-Server"
   }
 }
+terraform {
+  backend "s3" {
+    bucket         = "shafi-terraform-state-441130535976"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}
